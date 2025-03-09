@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "AppxRTHTestSampleWAS (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "AppxRTHTestSampleWAS (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
