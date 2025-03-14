@@ -48,27 +48,27 @@ public static class Win11DynamicDependency
 
     public static class NativeMethods
     {
-        [DllImport(ConstApiSetNames.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(CommonNativeInterop.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
         [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
         public static extern int TryCreatePackageDependency(
             IntPtr user, string packageFamilyName, PackageVersion minVersion, PackageDependencyProcessorArchitectures packageDependencyProcessorArchitectures,
             PackageDependencyLifetimeKind lifetimeKind, string lifetimeArtifact, CreatePackageDependencyOptions options, out string packageDependencyId);
 
-        [DllImport(ConstApiSetNames.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(CommonNativeInterop.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
         [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
         public static extern int AddPackageDependency(
             string packageDependencyId, int rank, AddPackageDependencyOptions options, IntPtr packageDependencyContext, out string packageFullName);
 
-        [DllImport(ConstApiSetNames.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(CommonNativeInterop.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
         [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
         public static extern int AddPackageDependency2(
             string packageDependencyId, int rank, AddPackageDependencyOptions2 options, IntPtr packageDependencyContext, out string packageFullName);
 
-        [DllImport(ConstApiSetNames.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(CommonNativeInterop.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
         [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
         public static extern int DeletePackageDependency(string packageDependencyId);
 
-        [DllImport(ConstApiSetNames.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(CommonNativeInterop.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
         [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
         public static extern int RemovePackageDependency(IntPtr packageDependencyContext);
     }
@@ -77,15 +77,15 @@ public static class Win11DynamicDependency
     {
         get
         {
-            IntPtr hlib = CommonNativeMethods.LoadLibraryExW(ConstApiSetNames.KernelBase, IntPtr.Zero, 0);
+            IntPtr hlib = CommonNativeInterop.LoadLibraryExW(CommonNativeInterop.KernelBase, IntPtr.Zero, 0);
             if (hlib == IntPtr.Zero) return false;
             try
             {
-                return CommonNativeMethods.GetProcAddress(hlib, "AddPackageDependency") != IntPtr.Zero;
+                return CommonNativeInterop.GetProcAddress(hlib, "AddPackageDependency") != IntPtr.Zero;
             }
             finally
             {
-                CommonNativeMethods.FreeLibrary(hlib);
+                CommonNativeInterop.FreeLibrary(hlib);
             }
         }
     }

@@ -5,6 +5,11 @@
     <LangVersion>10.0</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Nullable>enable</Nullable>
+    <CodeVersion>1.0.0</CodeVersion>
+    <ProductVersion>$(CodeVersion)</ProductVersion>
+    <FileVersion>$(CodeVersion).1</FileVersion>
+    <AssemblyTitle>Windows App Model Helpers</AssemblyTitle>
+    <Company>MinecraftXinYi Person</Company>
   </PropertyGroup>
 
 </Project>

@@ -225,15 +225,15 @@ public static class WindowsAppRuntimeBootstrap
     {
         get
         {
-            IntPtr hlib = CommonNativeMethods.LoadLibraryExW(NativeMethods.WASBootstrapDll, IntPtr.Zero, 0);
+            IntPtr hlib = CommonNativeInterop.LoadLibraryExW(NativeMethods.WASBootstrapDll, IntPtr.Zero, 0);
             if (hlib == IntPtr.Zero) return false;
             try
             {
-                return CommonNativeMethods.GetProcAddress(hlib, "MddBootstrapInitialize2") != IntPtr.Zero;
+                return CommonNativeInterop.GetProcAddress(hlib, "MddBootstrapInitialize2") != IntPtr.Zero;
             }
             finally
             {
-                CommonNativeMethods.FreeLibrary(hlib);
+                CommonNativeInterop.FreeLibrary(hlib);
             }
         }
     }

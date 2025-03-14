@@ -3,17 +3,21 @@ using System.Runtime.InteropServices;
 
 namespace WinAppModelHelpers;
 
-internal static class CommonNativeMethods
+internal static class CommonNativeInterop
 {
-    [DllImport(ConstApiSetNames.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
+    internal const string
+        KernelBase = "KernelBase.dll",
+        MsWinAppModelL112 = "api-ms-win-appmodel-runtime-l1-1-2";
+
+    [DllImport(KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     internal static extern IntPtr LoadLibraryExW(string lpLibFileName, IntPtr hFile, uint dwFlags);
 
-    [DllImport(ConstApiSetNames.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
+    [DllImport(KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     internal static extern IntPtr GetProcAddress(IntPtr hModule, string lpProcName);
 
-    [DllImport(ConstApiSetNames.KernelBase, SetLastError = true)]
+    [DllImport(KernelBase, SetLastError = true)]
     [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
     internal static extern int FreeLibrary(IntPtr hLibModule);
 }

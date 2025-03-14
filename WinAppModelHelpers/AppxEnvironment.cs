@@ -10,7 +10,7 @@ public static class AppxEnvironment
     {
         get
         {
-            [DllImport(ConstApiSetNames.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
+            [DllImport(CommonNativeInterop.KernelBase, CharSet = CharSet.Unicode, SetLastError = true)]
             [DefaultDllImportSearchPaths(DllImportSearchPath.System32)]
             static extern int GetCurrentPackageFullName(ref int packageFullNameLength, StringBuilder? packageFullName);
             int length = 0;
@@ -26,7 +26,7 @@ public static class AppxEnvironment
         ClassicPhone
     }
 
-    [DllImport(ConstApiSetNames.MsWinAppModelL112, ExactSpelling = true, SetLastError = true)]
+    [DllImport(CommonNativeInterop.MsWinAppModelL112, ExactSpelling = true, SetLastError = true)]
     public static extern long AppPolicyGetWindowingModel(IntPtr processToken, out AppPolicyWindowingModel policy);
 
     public static bool IsCoreApplication
@@ -51,7 +51,7 @@ public static class AppxEnvironment
         AppPolicyLifecycleManagement_Managed
     }
 
-    [DllImport(ConstApiSetNames.MsWinAppModelL112, ExactSpelling = true, SetLastError = true)]
+    [DllImport(CommonNativeInterop.MsWinAppModelL112, ExactSpelling = true, SetLastError = true)]
     public static extern long AppPolicyGetLifecycleManagement(IntPtr processToken, out AppPolicyLifecycleManagement policy);
 
     public static bool IsAppLifecycleManaged
